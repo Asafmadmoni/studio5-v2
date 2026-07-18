@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Five — Design by Senses</title>
+<meta name="description" content="Studio Five — interior design by Tal Yehoshua. A complete experience designed through the lens of the five senses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2EEE7; --paper-2:#EAE4D9; --sand:#E2DBCE; --stone:#C7BDAE;
+  --ink:#2B2621; --ink-2:#5B544A; --muted:#8B8375; --line:#DCD4C6; --line-2:#C8BFAF;
+  --f-serif:'Cormorant Garamond',Georgia,serif;
+  --f-sans:'Jost',-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f-sans);background:var(--paper);color:var(--ink);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--stone);color:var(--ink)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.eyebrow{font-family:var(--f-sans);font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3{font-weight:300;letter-spacing:-.5px;line-height:1.05}
+.serif{font-family:var(--f-serif)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+html:not(.js) .rv{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none}}
+
+/* ---------- INTRO LOADER ---------- */
+#loader{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:transform 1s var(--ease);animation:ldFail 0s linear 4s forwards}
+#loader.done{transform:translateY(-101%)}
+@keyframes ldFail{to{opacity:0;visibility:hidden;pointer-events:none}}
+.ld-mark{width:72px;height:72px;border-radius:50%;overflow:hidden;opacity:0;transform:scale(.6) translateY(10px);animation:ldMark 1.1s var(--ease) .12s forwards}
+.ld-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.ld-word{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--ink);font-weight:500;opacity:0;animation:ldWord 1s var(--ease) .5s forwards}
+@keyframes ldMark{to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes ldWord{from{opacity:0;letter-spacing:9px}to{opacity:1;letter-spacing:5px}}
+html:not(.js) #loader{display:none}
+
+/* ---------- NAV ---------- */
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:26px 0;transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease)}
+nav.solid{background:rgba(242,238,231,.88);backdrop-filter:blur(14px);padding:16px 0;box-shadow:0 1px 0 var(--line)}
+.nav-in{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:30px}
+.logo{display:flex;align-items:center;gap:13px}
+.logo .mk{width:34px;height:34px;border-radius:50%;background:var(--ink);position:relative;flex-shrink:0;overflow:hidden}
+.logo .mk img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.logo b{font-family:var(--f-sans);font-weight:500;font-size:17px;letter-spacing:3px;text-transform:uppercase}
+.logo b span{font-weight:300;color:var(--ink-2)}
+.nav-links{display:flex;gap:28px;margin-left:auto;align-items:center}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);position:relative;padding:4px 0;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{width:100%}
+.burger{display:none;margin-left:auto;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
+.mmenu{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:.4s var(--ease)}
+.mmenu.open{opacity:1;visibility:visible}
+.mmenu a{font-family:var(--f-serif);font-size:30px;color:var(--ink)}
+.mmenu .mclose{position:absolute;top:26px;right:40px;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--ink-2)}
+
+/* ---------- HERO ---------- */
+.hero{height:100vh;min-height:640px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.6s var(--ease)}
+.hero.in .hero-media img{transform:scale(1)}
+.hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(43,38,33,.34) 0%,rgba(43,38,33,.05) 32%,transparent 60%)}
+.hero-in{position:relative;z-index:2;width:100%;padding-bottom:56px}
+.hero-title{color:#fff;font-family:var(--f-sans);font-weight:300;font-size:clamp(44px,8.2vw,116px);letter-spacing:.02em;line-height:.98;text-transform:uppercase}
+.hero-title b{font-weight:500}
+.hero-sub{color:rgba(255,255,255,.86);font-size:13px;letter-spacing:5px;text-transform:uppercase;margin-top:16px;font-weight:400}
+.scroll-cue{position:absolute;bottom:30px;right:40px;z-index:2;color:rgba(255,255,255,.8);font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:9px;writing-mode:vertical-rl}
+.scroll-cue::after{content:'';width:1px;height:40px;background:rgba(255,255,255,.6);animation:cue 2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- ABOUT ---------- */
+.about{padding:130px 0}
+.about-grid{display:grid;grid-template-columns:0.82fr 1fr;gap:74px;align-items:center}
+.about-img{position:relative;aspect-ratio:4/5;background:var(--paper-2);overflow:hidden}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-img .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted);border:1px solid var(--line)}
+.about-img .ph svg{width:34px;height:34px;opacity:.5}
+.about-img .ph span{font-size:11px;letter-spacing:2px;text-transform:uppercase}
+.about-tx h2{font-size:clamp(30px,3.4vw,46px);margin:18px 0 26px}
+.about-tx p{color:var(--ink-2);font-size:16.5px;max-width:52ch;font-weight:300}
+.about-sign{margin-top:30px;font-family:var(--f-serif);font-style:italic;font-size:22px;color:var(--ink)}
+
+/* ---------- SERVICES ---------- */
+.services{padding:110px 0;background:var(--paper-2)}
+.svc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:center}
+.svc-list{list-style:none}
+.svc-list li{padding:22px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:18px;cursor:default;transition:.4s var(--ease)}
+.svc-list li:first-child{border-top:1px solid var(--line)}
+.svc-list .sn{font-size:12px;color:var(--muted);letter-spacing:1px;width:28px;flex-shrink:0}
+.svc-list .st{font-family:var(--f-serif);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);transition:.4s var(--ease)}
+.svc-list li:hover{padding-left:12px}
+.svc-list li:hover .st{color:var(--muted)}
+.svc-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.svc-col{display:flex;flex-direction:column;gap:12px}
+.svc-imgs img{width:100%;object-fit:cover;display:block;filter:grayscale(.06)}
+.im-room{aspect-ratio:3/4}
+.im-bowl{aspect-ratio:15/8}
+.im-mosaic{aspect-ratio:1/1}
+.im-counter{aspect-ratio:7/6}
+
+/* ---------- FIVE SENSES ---------- */
+.senses{padding:130px 0}
+.senses-head{max-width:640px;margin-bottom:64px}
+.senses-head h2{font-size:clamp(36px,5.5vw,78px);margin:18px 0 22px}
+.senses-head h2 em{font-family:var(--f-serif);font-style:italic;font-weight:400}
+.senses-head p{color:var(--ink-2);font-size:17px;font-weight:300;max-width:54ch}
+.sense-row{display:grid;grid-template-columns:90px 200px 1fr;gap:30px;padding:34px 0;border-top:1px solid var(--line);align-items:baseline}
+.sense-row:last-child{border-bottom:1px solid var(--line)}
+.sense-n{font-family:var(--f-serif);font-size:40px;color:var(--stone);line-height:1}
+.sense-t{font-size:15px;font-weight:500;letter-spacing:4px;text-transform:uppercase;padding-top:6px}
+.sense-d{color:var(--ink-2);font-size:16px;font-weight:300;max-width:56ch}
+@media(hover:hover){.sense-row{transition:.45s var(--ease)}.sense-row:hover{background:var(--paper-2);padding-left:20px;padding-right:20px;margin-left:-20px;margin-right:-20px}.sense-row:hover .sense-n{color:var(--ink)}}
+
+/* ---------- PROJECTS ---------- */
+.projects{padding:110px 0;background:var(--paper-2)}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+.proj{position:relative;overflow:hidden;background:var(--sand)}
+.proj.tall{grid-row:span 2;aspect-ratio:3/4}
+.proj:not(.tall){aspect-ratio:16/11}
+.proj img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);filter:grayscale(.08)}
+.proj:hover img{transform:scale(1.05)}
+.proj-lbl{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.proj-lbl b{font-family:var(--f-serif);font-size:26px;font-weight:400;display:block}
+.proj-lbl span{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;opacity:.85}
+.proj::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(43,38,33,.42),transparent 46%);z-index:1;opacity:.85}
+
+/* ---------- RECOMMENDATIONS ---------- */
+.recs{padding:130px 0}
+.recs-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:20px}
+.rec{padding:0 4px}
+.rec .q{font-family:var(--f-serif);font-size:26px;font-weight:400;font-style:italic;line-height:1.4;color:var(--ink)}
+.rec .m{width:32px;height:1px;background:var(--line-2);margin:22px 0 14px}
+.rec .by{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- ARTICLES ---------- */
+.articles{padding:110px 0;background:var(--paper-2)}
+.art-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:44px}
+.art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.art{cursor:pointer}
+.art .im{aspect-ratio:4/3;background:var(--sand);overflow:hidden;margin-bottom:16px}
+.art .im img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);filter:grayscale(.1)}
+.art:hover .im img{transform:scale(1.05)}
+.art .cat{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.art h3{font-family:var(--f-serif);font-size:22px;font-weight:400;margin:8px 0 6px;letter-spacing:0}
+.art p{font-size:13.5px;color:var(--ink-2);font-weight:300}
+.soon{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-2);padding:5px 12px;border-radius:20px}
+
+/* ---------- CONTACT ---------- */
+.contact{padding:130px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.contact h2{font-size:clamp(34px,4.6vw,64px);margin:16px 0 30px}
+.contact h2 em{font-family:var(--f-serif);font-style:italic;font-weight:400}
+.c-line{display:flex;flex-direction:column;gap:2px;padding:16px 0;border-bottom:1px solid var(--line)}
+.c-line .k{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.c-line .v{font-size:17px;color:var(--ink);font-weight:400}
+.c-form{display:flex;flex-direction:column;gap:16px}
+.c-form input,.c-form textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line-2);padding:12px 2px;font-family:inherit;font-size:15px;color:var(--ink);font-weight:300}
+.c-form input::placeholder,.c-form textarea::placeholder{color:var(--muted)}
+.c-form input:focus,.c-form textarea:focus{outline:none;border-color:var(--ink)}
+.btn{align-self:flex-start;margin-top:14px;background:var(--ink);color:var(--paper);border:none;padding:15px 40px;font-family:inherit;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.35s var(--ease)}
+.btn:hover{background:var(--ink-2)}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:36px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-brand b{font-size:18px;letter-spacing:3px;text-transform:uppercase;font-weight:500}
+.foot-brand p{color:rgba(255,255,255,.55);font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-top:8px}
+.foot-links{display:flex;gap:26px;flex-wrap:wrap}
+.foot-links a{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:.3s}
+.foot-links a:hover{color:#fff}
+.foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.4)}
+
+@media(max-width:900px){
+  .wrap,.nav-in{padding:0 24px}
+  .nav-links{display:none}.burger{display:flex}
+  .about-grid,.svc-grid,.senses-head,.recs-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .sense-row{grid-template-columns:60px 1fr;gap:14px}.sense-t{grid-column:2}.sense-d{grid-column:2}
+  .proj-grid,.art-grid{grid-template-columns:1fr}
+  .proj.tall{grid-row:auto;aspect-ratio:16/11}
+  .about,.senses,.recs,.contact,.services,.projects,.articles{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="ld-mark"><img src="studio5-v2-img/badge.png" alt=""></div>
+  <div class="ld-word">Studio Five</div>
+</div>
+
+<nav id="nav"><div class="nav-in">
+  <a href="#top" class="logo"><span class="mk"><img src="studio5-v2-img/badge.png" alt=""></span><b>studio <span>five</span></b></a>
+  <div class="nav-links">
+    <a href="#about">About Us</a>
+    <a href="#services">Our Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#recs">Recommendations</a>
+    <a href="#articles">Articles</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</div></nav>
+
+<div class="mmenu" id="mmenu">
+  <span class="mclose" id="mclose">Close ✕</span>
+  <a href="#about">About Us</a><a href="#services">Our Services</a><a href="#projects">Projects</a>
+  <a href="#recs">Recommendations</a><a href="#articles">Articles</a><a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-media"><img src="studio5-v2-img/hero.jpg" alt="Studio Five interior"></div>
+  <div class="hero-in"><div class="wrap">
+    <div class="eyebrow rv" style="color:rgba(255,255,255,.8);margin-bottom:20px">Interior Design Studio</div>
+    <h1 class="hero-title rv">Studio <b>Five</b></h1>
+    <div class="hero-sub rv">Design by Senses</div>
+  </div></div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- ABOUT -->
+<section class="about" id="about"><div class="wrap"><div class="about-grid">
+  <div class="about-img rv">
+    <img src="studio5-v2-img/tal.jpg" alt="Tal Yehoshua — Founder, Studio Five">
+  </div>
+  <div class="about-tx">
+    <div class="eyebrow rv">About Us</div>
+    <h2 class="rv">Where space<br>meets emotion.</h2>
+    <p class="rv">Studio Five was founded by designer <b style="font-weight:400;color:var(--ink)">Tal Yehoshua</b> with a vision to redefine the relationship between space and emotion. We specialize in creating unique, custom-tailored concepts driven by a precise, minimalist, and bold aesthetic.</p>
+    <p class="rv" style="margin-top:16px">At the core of our practice are the five senses; we approach design not just visually, but as a complete experience — ensuring that everyone who steps into the space feels instinctively that it was thoughtfully crafted for their exact needs. By placing people at the center of everything we do, we always strive to create environments that invite connection and inspire conversation, whether in a public space or a private home.</p>
+    <div class="about-sign rv">Tal Yehoshua</div>
+  </div>
+</div></div></section>
+
+<!-- SERVICES -->
+<section class="services" id="services"><div class="wrap">
+  <div class="eyebrow rv" style="margin-bottom:36px">Our Services</div>
+  <div class="svc-grid">
+    <ul class="svc-list">
+      <li class="rv"><span class="sn">01</span><span class="st">Five Total</span></li>
+      <li class="rv"><span class="sn">02</span><span class="st">Five Design</span></li>
+      <li class="rv"><span class="sn">03</span><span class="st">Five Concept</span></li>
+      <li class="rv"><span class="sn">04</span><span class="st">Five Boost</span></li>
+      <li class="rv"><span class="sn">05</span><span class="st">Five Remote</span></li>
+    </ul>
+    <div class="svc-imgs rv">
+      <div class="svc-col">
+        <img class="im-room" src="studio5-v2-img/svc3.jpg" alt="">
+        <img class="im-bowl" src="studio5-v2-img/svc4.jpg" alt="">
+      </div>
+      <div class="svc-col">
+        <img class="im-mosaic" src="studio5-v2-img/svc1.jpg" alt="">
+        <img class="im-counter" src="studio5-v2-img/svc2.jpg" alt="">
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- FIVE SENSES -->
+<section class="senses"><div class="wrap">
+  <div class="senses-head">
+    <div class="eyebrow rv">The Philosophy</div>
+    <h2 class="rv">Five Senses.<br><em>One Studio.</em></h2>
+    <p class="rv">Our name is our philosophy. Every space we design is cross-examined through the lens of the five senses — because that is how we truly experience life.</p>
+  </div>
+  <div class="sense-row rv"><span class="sense-n">01</span><span class="sense-t">Sight</span><span class="sense-d">Light. An architectural manipulation of natural and artificial lighting, designed to subtly transform the space and its atmosphere throughout the day and night.</span></div>
+  <div class="sense-row rv"><span class="sense-n">02</span><span class="sense-t">Touch</span><span class="sense-d">Layering textures to create rich, inviting, and warm spaces while maintaining a high, clean aesthetic — this is our expertise.</span></div>
+  <div class="sense-row rv"><span class="sense-n">03</span><span class="sense-t">Hearing</span><span class="sense-d">The ability to control spatial acoustics through design, making conscious choices to evoke the exact feeling and energy we wish to create.</span></div>
+  <div class="sense-row rv"><span class="sense-n">04</span><span class="sense-t">Smell</span><span class="sense-d">Scent is the fastest path to memory, and it is an essential tool in our design process. Every material carries a unique scent that can instantly transport you to another time and place.</span></div>
+  <div class="sense-row rv"><span class="sense-n">05</span><span class="sense-t">Taste</span><span class="sense-d">In its metaphorical sense, our favorite of all. We create spaces defined by the people who occupy them, not the other way around — and that is exactly what makes them so successful.</span></div>
+</div></section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects"><div class="wrap">
+  <div class="eyebrow rv">Selected Work</div>
+  <h2 class="serif rv" style="font-size:clamp(32px,4vw,54px);margin-top:14px">Our Projects</h2>
+  <div class="proj-grid">
+    <a class="proj tall rv"><img src="studio5-v2-img/residence.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Private Home</span></div></a>
+    <a class="proj rv"><img src="studio5-v2-img/commercial.jpg" alt="Commercial"><div class="proj-lbl"><b>Commercial</b><span>Retail Space</span></div></a>
+    <a class="proj rv"><img src="studio5-v2-img/residence-wide.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Living Space</span></div></a>
+  </div>
+</div></section>
+
+<!-- RECOMMENDATIONS -->
+<section class="recs" id="recs"><div class="wrap">
+  <div class="eyebrow rv">Recommendations</div>
+  <div class="recs-grid">
+    <div class="rec rv"><div class="q">&ldquo;Tal didn&rsquo;t just design an apartment for us; she designed a lifestyle. Every morning we wake up feeling like we are exactly where we are supposed to be.&rdquo;</div><div class="m"></div><div class="by">Private Residence &middot; Client</div></div>
+    <div class="rec rv"><div class="q">&ldquo;Working with Tal was a masterclass in design. She took our raw ideas and distilled them into a precise, powerful concept. Every texture, light source, and detail was executed with absolute perfection.&rdquo;</div><div class="m"></div><div class="by">Commercial Project &middot; Client</div></div>
+  </div>
+</div></section>
+
+<!-- ARTICLES -->
+<section class="articles" id="articles"><div class="wrap">
+  <div class="art-head">
+    <div><div class="eyebrow rv">Journal</div><h2 class="serif rv" style="font-size:clamp(32px,4vw,54px);margin-top:14px">Articles</h2></div>
+    <span class="soon rv">Coming soon</span>
+  </div>
+  <div class="art-grid">
+    <div class="art rv"><div class="im"><img src="studio5-v2-img/svc1.jpg" alt=""></div><div class="cat">Materials</div><h3>The Quiet Power of Travertine</h3><p>Why raw stone became the soul of the modern minimal home.</p></div>
+    <div class="art rv"><div class="im"><img src="studio5-v2-img/svc2.jpg" alt=""></div><div class="cat">Light</div><h3>Designing with Shadow</h3><p>How linear light sculpts atmosphere from morning to night.</p></div>
+    <div class="art rv"><div class="im"><img src="studio5-v2-img/svc4.jpg" alt=""></div><div class="cat">Senses</div><h3>Scent as Architecture</h3><p>The invisible layer that turns a space into a memory.</p></div>
+  </div>
+</div></section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact"><div class="wrap"><div class="contact-grid">
+  <div>
+    <div class="eyebrow rv">Contact Us</div>
+    <h2 class="rv">Let&rsquo;s plan<br><em>your space.</em></h2>
+    <div class="c-line rv"><span class="k">Phone</span><span class="v">052-811-4146</span></div>
+    <div class="c-line rv"><span class="k">Email</span><span class="v">hello@studiofive.co.il</span></div>
+    <div class="c-line rv"><span class="k">Studio</span><span class="v">Ali Hachoon 29, Rosh Ha&rsquo;ayin, Israel</span></div>
+  </div>
+  <form class="c-form rv" onsubmit="event.preventDefault();this.innerHTML='<div class=&quot;serif&quot; style=&quot;font-size:26px&quot;>Thank you &mdash; we&rsquo;ll be in touch shortly.</div>'">
+    <input type="text" placeholder="Full name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="tel" placeholder="Phone">
+    <textarea rows="3" placeholder="Tell us about your space"></textarea>
+    <button class="btn" type="submit">Send Inquiry</button>
+  </form>
+</div></div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><b>Studio Five</b><p>Design by Senses</p></div>
+    <div class="foot-links">
+      <a href="#about">About</a><a href="#services">Services</a><a href="#projects">Projects</a>
+      <a href="#recs">Recommendations</a><a href="#articles">Articles</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>&copy; 2026 Studio Five &mdash; Tal Yehoshua. All rights reserved.</span>
+    <span>Rosh Ha&rsquo;ayin &middot; Israel</span>
+  </div>
+</div></footer>
+
+<script>
+  document.documentElement.classList.add('js');
+  // nav solidify on scroll
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40);},{passive:true});
+  // mobile menu
+  var mm=document.getElementById('mmenu');
+  document.getElementById('burger').addEventListener('click',function(){mm.classList.add('open');document.body.style.overflow='hidden';});
+  function closeM(){mm.classList.remove('open');document.body.style.overflow='';}
+  document.getElementById('mclose').addEventListener('click',closeM);
+  mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeM);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeM();});
+
+  // reveal on view — pure vanilla, no external libs (bulletproof + no CDN dependency)
+  function reveal(el){el.style.opacity='1';el.style.transform='none';el.classList.add('in');}
+  var hero=document.querySelector('.hero');
+  // intro loader → hero entrance
+  var loader=document.getElementById('loader');
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function startHero(){if(hero)hero.classList.add('in');document.querySelectorAll('.hero .rv').forEach(function(el,i){setTimeout(function(){reveal(el);},120+i*150);});}
+  function endLoader(){if(loader){loader.classList.add('done');setTimeout(function(){loader.style.display='none';},1000);}startHero();}
+  if(reduce){if(loader)loader.style.display='none';startHero();}
+  else{setTimeout(endLoader,2000);}
+  // safety: never trap the site behind the loader
+  setTimeout(function(){if(loader&&loader.style.display!=='none'){loader.classList.add('done');setTimeout(function(){loader.style.display='none';},400);}},3400);
+  // scroll-based reveal — works with every scroll type (wheel, trackpad, touch, keyboard, jump)
+  function checkReveals(){
+    var vh=innerHeight||document.documentElement.clientHeight;
+    document.querySelectorAll('.rv:not(.in)').forEach(function(el){
+      if(el.closest('.hero'))return;
+      if(el.getBoundingClientRect().top < vh*0.9) reveal(el);
+    });
+  }
+  addEventListener('scroll',checkReveals,{passive:true});
+  addEventListener('resize',checkReveals,{passive:true});
+  checkReveals();
+  setTimeout(checkReveals,250);
+</script>
+</body>
+</html>
