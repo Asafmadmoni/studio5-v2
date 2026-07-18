@@ -44,19 +44,14 @@ html:not(.js) .rv{opacity:1;transform:none}
 html:not(.js) #loader{display:none}
 
 /* ---------- NAV ---------- */
-nav{position:fixed;top:0;left:0;width:100%;z-index:100;padding:26px 0;transition:background .5s var(--ease),padding .5s var(--ease),box-shadow .5s var(--ease)}
-nav.solid{background:rgba(242,238,231,.88);backdrop-filter:blur(14px);padding:16px 0;box-shadow:0 1px 0 var(--line)}
-.nav-in{max-width:1280px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:30px}
-.logo{display:flex;align-items:center;gap:13px}
-.logo .mk{width:34px;height:34px;border-radius:50%;background:var(--ink);position:relative;flex-shrink:0;overflow:hidden}
-.logo .mk img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.logo b{font-family:var(--f-sans);font-weight:500;font-size:17px;letter-spacing:3px;text-transform:uppercase}
-.logo b span{font-weight:300;color:var(--ink-2)}
-.nav-links{display:flex;gap:28px;margin-left:auto;align-items:center}
-.nav-links a{font-size:12px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2);position:relative;padding:4px 0;transition:color .3s}
-.nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--ink);transition:width .35s var(--ease)}
+nav{position:fixed;top:0;right:0;z-index:100;padding:30px 46px;display:flex;flex-direction:column;align-items:flex-end;gap:20px}
+.logo{display:block;line-height:0}
+.logo img{width:38px;height:auto;display:block}
+.nav-links{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
+.nav-links a{font-size:11.5px;font-weight:400;letter-spacing:1.6px;text-transform:uppercase;color:var(--ink-2);position:relative;transition:color .3s;white-space:nowrap}
+.nav-links a::after{content:'';position:absolute;right:0;bottom:-3px;width:0;height:1px;background:var(--ink);transition:width .35s var(--ease)}
 .nav-links a:hover{color:var(--ink)}.nav-links a:hover::after{width:100%}
-.burger{display:none;margin-left:auto;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px}
 .burger span{width:24px;height:1.5px;background:var(--ink);transition:.3s}
 .mmenu{position:fixed;inset:0;z-index:200;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:.4s var(--ease)}
 .mmenu.open{opacity:1;visibility:visible}
@@ -64,18 +59,15 @@ nav.solid{background:rgba(242,238,231,.88);backdrop-filter:blur(14px);padding:16
 .mmenu .mclose{position:absolute;top:26px;right:40px;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--ink-2)}
 
 /* ---------- HERO ---------- */
-.hero{height:100vh;min-height:640px;position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.hero{height:100vh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:center}
 .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
-.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.6s var(--ease)}
+.hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.8s var(--ease)}
 .hero.in .hero-media img{transform:scale(1)}
-.hero::after{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(43,38,33,.34) 0%,rgba(43,38,33,.05) 32%,transparent 60%)}
-.hero-in{position:relative;z-index:2;width:100%;padding-bottom:56px}
-.hero-title{color:#fff;font-family:var(--f-sans);font-weight:300;font-size:clamp(44px,8.2vw,116px);letter-spacing:.02em;line-height:.98;text-transform:uppercase}
-.hero-title b{font-weight:500}
-.hero-sub{color:rgba(255,255,255,.86);font-size:13px;letter-spacing:5px;text-transform:uppercase;margin-top:16px;font-weight:400}
-.scroll-cue{position:absolute;bottom:30px;right:40px;z-index:2;color:rgba(255,255,255,.8);font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:9px;writing-mode:vertical-rl}
-.scroll-cue::after{content:'';width:1px;height:40px;background:rgba(255,255,255,.6);animation:cue 2s var(--ease) infinite}
-@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.hero-in{position:relative;z-index:2;width:100%}
+.hero .wrap{max-width:none;margin:0;padding-left:clamp(24px,15vw,300px);padding-right:24px}
+.hero-title{color:var(--ink);font-family:var(--f-sans);font-weight:300;font-size:clamp(34px,5.2vw,60px);letter-spacing:.015em;line-height:1;text-transform:uppercase}
+.hero-title b{font-weight:600}
+.hero-sub{color:var(--ink-2);font-size:12px;letter-spacing:4px;text-transform:uppercase;margin-top:13px;font-weight:400}
 
 /* ---------- ABOUT ---------- */
 .about{padding:130px 0}
@@ -180,8 +172,9 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 .foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:26px;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.4)}
 
 @media(max-width:900px){
-  .wrap,.nav-in{padding:0 24px}
-  .nav-links{display:none}.burger{display:flex}
+  .wrap{padding:0 24px}
+  nav{padding:20px 22px}.logo{display:none}.nav-links{display:none}.burger{display:flex}
+  .hero .wrap{padding-left:24px}
   .about-grid,.svc-grid,.senses-head,.recs-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
   .sense-row{grid-template-columns:60px 1fr;gap:14px}.sense-t{grid-column:2}.sense-d{grid-column:2}
   .proj-grid,.art-grid{grid-template-columns:1fr}
@@ -197,18 +190,18 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
   <div class="ld-word">Studio Five</div>
 </div>
 
-<nav id="nav"><div class="nav-in">
-  <a href="#top" class="logo"><span class="mk"><img src="studio5-v2-img/badge.png" alt=""></span><b>studio <span>five</span></b></a>
+<nav id="nav">
+  <a href="#top" class="logo"><img src="studio5-v2-img/mark.png" alt="Studio Five"></a>
   <div class="nav-links">
     <a href="#about">About Us</a>
     <a href="#services">Our Services</a>
     <a href="#projects">Projects</a>
     <a href="#recs">Recommendations</a>
     <a href="#articles">Articles</a>
-    <a href="#contact">Contact</a>
+    <a href="#contact">Contact Us</a>
   </div>
   <div class="burger" id="burger"><span></span><span></span><span></span></div>
-</div></nav>
+</nav>
 
 <div class="mmenu" id="mmenu">
   <span class="mclose" id="mclose">Close ✕</span>
@@ -220,11 +213,9 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 <header class="hero" id="top">
   <div class="hero-media"><img src="studio5-v2-img/hero.jpg" alt="Studio Five interior"></div>
   <div class="hero-in"><div class="wrap">
-    <div class="eyebrow rv" style="color:rgba(255,255,255,.8);margin-bottom:20px">Interior Design Studio</div>
     <h1 class="hero-title rv">Studio <b>Five</b></h1>
     <div class="hero-sub rv">Design by Senses</div>
   </div></div>
-  <div class="scroll-cue">Scroll</div>
 </header>
 
 <!-- ABOUT -->
