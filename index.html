@@ -59,13 +59,13 @@ nav{position:fixed;top:0;right:0;z-index:100;padding:30px 46px;display:flex;flex
 .mmenu .mclose{position:absolute;top:26px;right:40px;font-size:13px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--ink-2)}
 
 /* ---------- HERO ---------- */
-.hero{height:100vh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:center}
+.hero{height:100vh;min-height:620px;position:relative;overflow:hidden;display:flex;align-items:flex-start}
 .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.8s var(--ease)}
 .hero.in .hero-media img{transform:scale(1)}
-.hero-in{position:relative;z-index:2;width:100%}
-.hero .wrap{max-width:none;margin:0;padding-left:clamp(24px,13vw,240px);padding-right:24px}
-.hero-logo{width:min(400px,58vw);height:auto;display:block}
+.hero-in{position:relative;z-index:2;width:100%;padding-top:10vh}
+.hero .wrap{max-width:none;margin:0;padding-left:clamp(24px,7vw,150px);padding-right:24px}
+.hero-logo{width:min(360px,52vw);height:auto;display:block}
 
 /* ---------- ABOUT ---------- */
 .about{padding:130px 0}
@@ -270,7 +270,7 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 
 <!-- PROJECTS -->
 <section class="projects" id="projects"><div class="wrap">
-  <h2 class="serif rv" style="font-size:clamp(32px,4vw,54px)">Our Projects</h2>
+  <h2 class="rv" style="font-family:var(--f-sans);font-weight:300;font-size:clamp(30px,3.6vw,50px);text-transform:uppercase;letter-spacing:.02em;text-align:center">Our Projects</h2>
   <div class="proj-grid">
     <a class="proj rv"><img src="studio5-v2-img/residence.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Private Home</span></div></a>
     <a class="proj rv"><img src="studio5-v2-img/commercial.jpg" alt="Commercial"><div class="proj-lbl"><b>Commercial</b><span>Retail Space</span></div></a>
