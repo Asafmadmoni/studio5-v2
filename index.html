@@ -84,13 +84,17 @@ nav{position:fixed;top:0;right:0;z-index:100;padding:30px 46px;display:flex;flex
 /* ---------- SERVICES ---------- */
 .services{padding:110px 0;background:var(--paper-2)}
 .svc-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:center}
+.svc-title{font-family:var(--f-sans);font-weight:300;font-size:clamp(38px,4.6vw,60px);line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);margin-bottom:40px}
 .svc-list{list-style:none}
-.svc-list li{padding:22px 0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:18px;cursor:default;transition:.4s var(--ease)}
+.svc-list li{border-bottom:1px solid var(--line)}
 .svc-list li:first-child{border-top:1px solid var(--line)}
+.svc-list li a{display:flex;align-items:center;gap:16px;padding:20px 0;text-decoration:none;color:inherit;transition:.4s var(--ease)}
+.svc-list li a:hover{padding-left:12px}
 .svc-list .sn{font-size:12px;color:var(--muted);letter-spacing:1px;width:28px;flex-shrink:0}
-.svc-list .st{font-family:var(--f-serif);font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--ink);transition:.4s var(--ease)}
-.svc-list li:hover{padding-left:12px}
-.svc-list li:hover .st{color:var(--muted)}
+.svc-list .st{font-family:var(--f-sans);font-size:clamp(19px,2.3vw,28px);font-weight:400;color:var(--ink);transition:.4s var(--ease)}
+.svc-list .sar{margin-left:auto;color:var(--muted);opacity:0;transform:translateX(-6px);transition:.35s var(--ease);font-size:18px}
+.svc-list li a:hover .sar{opacity:1;transform:none}
+.svc-list li a:hover .st{color:var(--muted)}
 .svc-imgs{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
 .svc-col{display:flex;flex-direction:column;gap:12px}
 .svc-imgs img{width:100%;object-fit:cover;display:block;filter:grayscale(.06)}
@@ -234,14 +238,14 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 
 <!-- SERVICES -->
 <section class="services" id="services"><div class="wrap">
-  <div class="eyebrow rv" style="margin-bottom:36px">Our Services</div>
+  <h2 class="svc-title rv">Our Services</h2>
   <div class="svc-grid">
     <ul class="svc-list">
-      <li class="rv"><span class="sn">01</span><span class="st">Five Total</span></li>
-      <li class="rv"><span class="sn">02</span><span class="st">Five Design</span></li>
-      <li class="rv"><span class="sn">03</span><span class="st">Five Concept</span></li>
-      <li class="rv"><span class="sn">04</span><span class="st">Five Boost</span></li>
-      <li class="rv"><span class="sn">05</span><span class="st">Five Remote</span></li>
+      <li class="rv"><a href="service-total.html"><span class="sn">01</span><span class="st">Five Total</span><span class="sar">→</span></a></li>
+      <li class="rv"><a href="service-design.html"><span class="sn">02</span><span class="st">Five Design</span><span class="sar">→</span></a></li>
+      <li class="rv"><a href="service-concept.html"><span class="sn">03</span><span class="st">Five Concept</span><span class="sar">→</span></a></li>
+      <li class="rv"><a href="service-boost.html"><span class="sn">04</span><span class="st">Five Boost</span><span class="sar">→</span></a></li>
+      <li class="rv"><a href="service-remote.html"><span class="sn">05</span><span class="st">Five Remote</span><span class="sar">→</span></a></li>
     </ul>
     <div class="svc-imgs rv">
       <div class="svc-col">

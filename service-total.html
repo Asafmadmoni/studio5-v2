@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Five Total — Studio Five</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F2EEE7;--paper-2:#EAE4D9;--sand:#E2DBCE;--stone:#C7BDAE;--ink:#2B2621;--ink-2:#5B544A;--muted:#8B8375;--line:#DCD4C6;--line-2:#C8BFAF;--f-serif:'Cormorant Garamond',Georgia,serif;--f-sans:'Jost',-apple-system,'Segoe UI',sans-serif;--ease:cubic-bezier(.22,1,.36,1)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f-sans);background:var(--paper);color:var(--ink);font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:940px;margin:0 auto;padding:0 32px}
+.top{padding:30px 0;display:flex;align-items:center;justify-content:space-between}
+.top .logo img{width:38px;height:auto;display:block}
+.top .back{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-2)}
+.top .back:hover{color:var(--ink)}
+.head{padding:70px 0 40px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+h1{font-family:var(--f-sans);font-weight:300;font-size:clamp(40px,7vw,90px);line-height:1;letter-spacing:.01em;text-transform:uppercase;color:var(--ink)}
+h1 b{font-weight:600}
+.body{padding:46px 0 20px;max-width:60ch}
+.body p{font-size:18px;color:var(--ink-2);font-weight:300;margin:14px 0}
+.body .lead{font-family:var(--f-serif);font-size:26px;font-style:italic;color:var(--ink);margin-bottom:26px}
+.cta{margin:60px 0 90px;padding:44px;background:#fff;border:1px solid var(--line);border-radius:18px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cta h2{font-family:var(--f-serif);font-size:34px;font-weight:400;margin-bottom:8px}.cta h2 em{font-style:italic}
+.cta .sub{color:var(--muted);font-size:14px}
+.c-line{display:flex;flex-direction:column;gap:2px;padding:12px 0;border-bottom:1px solid var(--line)}
+.c-line .k{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}.c-line .v{font-size:16px}
+form{display:flex;flex-direction:column;gap:14px}
+input,textarea{width:100%;background:var(--paper);border:none;border-bottom:1px solid var(--line-2);padding:11px 2px;font-family:inherit;font-size:15px;color:var(--ink);font-weight:300}
+input:focus,textarea:focus{outline:none;border-color:var(--ink)}
+.btn{align-self:flex-start;margin-top:8px;background:var(--ink);color:var(--paper);border:none;padding:14px 36px;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.35s var(--ease)}
+.btn:hover{background:var(--ink-2)}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12px;text-align:center}
+@media(max-width:760px){.cta{grid-template-columns:1fr;padding:28px}}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/studio5-v2/" class="logo"><img src="studio5-v2-img/mark.png" alt="Studio Five"></a>
+    <a href="/studio5-v2/#services" class="back">← All Services</a>
+  </div>
+  <div class="head">
+    <div class="eyebrow">Our Services</div>
+    <h1>Five <b>Total</b></h1>
+  </div>
+  <div class="body">
+    <p class="lead">The complete journey — full turnkey interior design, from first concept to the final styled space, managed end to end.</p>    <p>Every project at Studio Five is approached through the lens of the five senses — a complete, tailored experience crafted for the people who live in it. Tell us about your space and we’ll shape the right path for you.</p>
+  </div>
+  <div class="cta">
+    <div>
+      <h2>Let’s <em>talk.</em></h2>
+      <div class="sub" style="margin-bottom:20px">Interested in Five Total? Leave your details and we’ll be in touch.</div>
+      <div class="c-line"><span class="k">Phone</span><span class="v">052-811-4146</span></div>
+      <div class="c-line"><span class="k">Email</span><span class="v">hello@studiofive.co.il</span></div>
+    </div>
+    <form id="cform">
+      <input type="hidden" name="topic" value="Five Total">
+      <input type="text" name="name" placeholder="Full name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="phone" placeholder="Phone">
+      <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <textarea name="message" rows="3" placeholder="Tell us about your space"></textarea>
+      <button class="btn" type="submit">Send Inquiry</button>
+    </form>
+  </div>
+</div>
+<footer>© 2026 Studio Five — Tal Yehoshua · Design by Senses</footer>
+<script>
+(function(){var f=document.getElementById('cform');f.addEventListener('submit',function(e){e.preventDefault();var b=f.querySelector('button');b.disabled=true;b.textContent='Sending...';
+fetch('/studio5-v2/api/contact.php',{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
+if(d.ok){f.innerHTML='<div class="lead" style="font-family:Cormorant Garamond,serif;font-size:26px;font-style:italic">Thank you — we’ll be in touch shortly.</div>';}
+else{b.disabled=false;b.textContent='Send Inquiry';alert(d.msg||'Please try again.');}}).catch(function(){b.disabled=false;b.textContent='Send Inquiry';alert('Network error.');});});})();
+</script>
+</body></html>
