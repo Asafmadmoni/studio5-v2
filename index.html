@@ -346,6 +346,10 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 
 <script>
   document.documentElement.classList.add('js');
+  // always start at the top on load/refresh (no browser scroll restoration to #contact etc.)
+  if('scrollRestoration' in history){history.scrollRestoration='manual';}
+  window.scrollTo(0,0);
+  addEventListener('load',function(){window.scrollTo(0,0);});
   // nav solidify on scroll
   var nav=document.getElementById('nav');
   addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>40);},{passive:true});
