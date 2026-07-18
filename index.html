@@ -140,7 +140,8 @@ nav{position:fixed;top:0;right:0;z-index:100;padding:30px 46px;display:flex;flex
 .articles{padding:110px 0;background:var(--paper-2)}
 .art-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:44px}
 .art-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
-.art{cursor:pointer}
+.art{display:block;cursor:pointer;color:inherit;text-decoration:none}
+.art .more{display:inline-block;margin-top:12px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink)}
 .art .im{aspect-ratio:4/3;background:var(--sand);overflow:hidden;margin-bottom:16px}
 .art .im img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease);filter:grayscale(.1)}
 .art:hover .im img{transform:scale(1.05)}
