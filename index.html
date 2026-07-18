@@ -116,10 +116,8 @@ nav{position:fixed;top:0;right:0;z-index:100;padding:30px 46px;display:flex;flex
 
 /* ---------- PROJECTS ---------- */
 .projects{padding:110px 0;background:var(--paper-2)}
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
-.proj{position:relative;overflow:hidden;background:var(--sand)}
-.proj.tall{grid-row:span 2;aspect-ratio:3/4}
-.proj:not(.tall){aspect-ratio:16/11}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:40px}
+.proj{position:relative;overflow:hidden;background:var(--sand);aspect-ratio:4/3}
 .proj img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease);filter:grayscale(.08)}
 .proj:hover img{transform:scale(1.05)}
 .proj-lbl{position:absolute;left:22px;bottom:20px;z-index:2;color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.4)}
@@ -272,12 +270,10 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 
 <!-- PROJECTS -->
 <section class="projects" id="projects"><div class="wrap">
-  <div class="eyebrow rv">Selected Work</div>
-  <h2 class="serif rv" style="font-size:clamp(32px,4vw,54px);margin-top:14px">Our Projects</h2>
+  <h2 class="serif rv" style="font-size:clamp(32px,4vw,54px)">Our Projects</h2>
   <div class="proj-grid">
-    <a class="proj tall rv"><img src="studio5-v2-img/residence.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Private Home</span></div></a>
+    <a class="proj rv"><img src="studio5-v2-img/residence.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Private Home</span></div></a>
     <a class="proj rv"><img src="studio5-v2-img/commercial.jpg" alt="Commercial"><div class="proj-lbl"><b>Commercial</b><span>Retail Space</span></div></a>
-    <a class="proj rv"><img src="studio5-v2-img/residence-wide.jpg" alt="Residence"><div class="proj-lbl"><b>Residence</b><span>Living Space</span></div></a>
   </div>
 </div></section>
 
