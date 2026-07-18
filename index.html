@@ -36,14 +36,14 @@ html:not(.js) .rv{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;transition:none}}
 
 /* ---------- INTRO LOADER ---------- */
-#loader{position:fixed;inset:0;z-index:1000;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;transition:transform 1s var(--ease);animation:ldFail 0s linear 4s forwards}
+#loader{position:fixed;inset:0;z-index:1000;background:radial-gradient(ellipse at 50% 42%,#726A5F 0%,#5A5247 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:transform 1.05s cubic-bezier(.76,0,.24,1);animation:ldFail 0s linear 4s forwards}
 #loader.done{transform:translateY(-101%)}
 @keyframes ldFail{to{opacity:0;visibility:hidden;pointer-events:none}}
-.ld-mark{width:72px;height:72px;border-radius:50%;overflow:hidden;opacity:0;transform:scale(.6) translateY(10px);animation:ldMark 1.1s var(--ease) .12s forwards}
-.ld-mark img{width:100%;height:100%;object-fit:cover;display:block}
-.ld-word{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--ink);font-weight:500;opacity:0;animation:ldWord 1s var(--ease) .5s forwards}
-@keyframes ldMark{to{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes ldWord{from{opacity:0;letter-spacing:9px}to{opacity:1;letter-spacing:5px}}
+.ld-mark{width:58px;height:72px;-webkit-mask:url(studio5-v2-img/mark.png) center/contain no-repeat;mask:url(studio5-v2-img/mark.png) center/contain no-repeat;background:#F2EEE7;opacity:0;transform:scale(.5) rotate(-30deg);animation:ldMark 1.15s var(--ease) .15s forwards}
+.ld-word{font-family:var(--f-serif);font-size:27px;letter-spacing:.5px;color:#F5F1EA;font-weight:400;text-align:center;line-height:1;opacity:0;transform:translateY(18px);animation:ldWord .8s var(--ease) .7s forwards}
+.ld-word small{display:block;font-family:var(--f-sans);font-size:9.5px;letter-spacing:.42em;text-transform:uppercase;color:rgba(245,241,234,.68);margin-top:10px;font-weight:400}
+@keyframes ldMark{to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes ldWord{to{opacity:1;transform:translateY(0)}}
 html:not(.js) #loader{display:none}
 
 /* ---------- NAV ---------- */
@@ -189,8 +189,8 @@ footer{background:var(--ink);color:var(--paper);padding:70px 0 34px}
 <body>
 
 <div id="loader" aria-hidden="true">
-  <div class="ld-mark"><img src="studio5-v2-img/badge.png" alt=""></div>
-  <div class="ld-word">Studio Five</div>
+  <div class="ld-mark"></div>
+  <div class="ld-word">Studio Five<small>Design by Senses</small></div>
 </div>
 
 <nav id="nav">
